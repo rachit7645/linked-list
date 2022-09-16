@@ -10,6 +10,8 @@
 using f32 = float;
 using f64 = double;
 
+constexpr f64 PI = 22.0 / 7.0;
+
 namespace Tests
 {
 	enum Result : int

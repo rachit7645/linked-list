@@ -28,17 +28,9 @@ int main(UNUSED int argc, UNUSED char** argv)
 	auto* second = new Node<f32>();
 	auto* third  = new Node<f32>();
 
-	first->data = static_cast<f32>(22.0 / 7.0);
-	first->prev = nullptr;
-	first->next = second;
-
-	second->data = 69.0f;
-	second->prev = first;
-	second->next = third;
-
-	third->data = 420.0f;
-	third->prev = second;
-	third->next = nullptr;
+	*first  = {PI,     nullptr, second };
+	*second = {69.0f,  first,   third  };
+	*third  = {420.0f, second,  nullptr};
 
 	PrintNode(first);
 	PrintNode(second);
