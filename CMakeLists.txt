@@ -29,12 +29,16 @@ target_compile_options(linkedList PRIVATE -O3)
 target_compile_options(linkedList PRIVATE -g)
 
 # Basic Test
-add_executable(BasicTest tests/BasicNode.cpp)
-target_link_libraries(BasicTest linkedList)
+add_executable(BasicNode tests/BasicNode.cpp)
+target_link_libraries(BasicNode linkedList)
 # Forward Iterator Test
 add_executable(ForwardIter tests/ForwardIter.cpp)
 target_link_libraries(ForwardIter linkedList)
+# Reverse Iterator Test
+add_executable(RevIter tests/RevIter.cpp)
+target_link_libraries(RevIter linkedList)
 
 enable_testing()
-add_test(BasicNodeTest BasicTest)
+add_test(BasicNodeTest BasicNode)
 add_test(ForwardIterTest ForwardIter)
+add_test(RevIterTest RevIter)

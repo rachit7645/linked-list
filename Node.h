@@ -15,7 +15,7 @@ namespace LinkedList
 		class Iterator
 		{
 		public:
-			using iterator_category = std::forward_iterator_tag;
+			using iterator_category = std::bidirectional_iterator_tag;
 			using difference_type   = std::ptrdiff_t;
 			using value_type        = Node;
 			using pointer           = Node*;
@@ -38,10 +38,24 @@ namespace LinkedList
 
 			Iterator& operator++()
 			{
-				return reinterpret_cast<Iterator&>(m_node = m_node->next);
+				m_node = m_node->next;
+				return *this;
 			}
 
 			Iterator operator++(int)
+			{
+				Iterator tmp = *this;
+				++(*this);
+				return tmp;
+			}
+
+			Iterator& operator--()
+			{
+				m_node = m_node->prev;
+				return *this;
+			}
+
+			Iterator operator--(int)
 			{
 				Iterator tmp = *this;
 				++(*this);
@@ -78,6 +92,16 @@ namespace LinkedList
 			}
 			// Return the end
 			return end;
+		}
+
+		Iterator rbegin()
+		{
+			return end()--;
+		}
+
+		Iterator rend()
+		{
+			return begin()--;
 		}
 	};
 }
