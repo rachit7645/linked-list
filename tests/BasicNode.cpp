@@ -32,9 +32,10 @@ int main(UNUSED int argc, UNUSED char** argv)
 	*second = {69.0f,  first,   third  };
 	*third  = {420.0f, second,  nullptr};
 
-	PrintNode(first);
-	PrintNode(second);
-	PrintNode(third);
+	for (auto & i : *first)
+	{
+		PrintNode(&i);
+	}
 
 	delete first;
 	delete second;
