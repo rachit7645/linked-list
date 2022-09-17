@@ -28,9 +28,13 @@ target_compile_options(linkedList PRIVATE -O3)
 # Enable debug output
 target_compile_options(linkedList PRIVATE -g)
 
-# Test executables
+# Basic Test
 add_executable(BasicTest tests/BasicNode.cpp)
 target_link_libraries(BasicTest linkedList)
+# Forward Iterator Test
+add_executable(ForwardIter tests/ForwardIter.cpp)
+target_link_libraries(ForwardIter linkedList)
 
 enable_testing()
 add_test(BasicNodeTest BasicTest)
+add_test(ForwardIterTest ForwardIter)

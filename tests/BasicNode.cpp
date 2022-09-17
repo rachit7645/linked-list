@@ -1,6 +1,3 @@
-#include <iostream>
-
-#include "../Node.h"
 #include "TestCommon.h"
 
 using LinkedList::Node;
@@ -32,10 +29,9 @@ int main(UNUSED int argc, UNUSED char** argv)
 	*second = {69.0f,  first,   third  };
 	*third  = {420.0f, second,  nullptr};
 
-	for (auto & i : *first)
-	{
-		PrintNode(&i);
-	}
+	PrintNode(first);
+	PrintNode(second);
+	PrintNode(third);
 
 	delete first;
 	delete second;

@@ -1,6 +1,10 @@
 #ifndef TEST_COMMON_H
 #define TEST_COMMON_H
 
+#include <iostream>
+
+#include "../Node.h"
+
 #ifdef __CLION_IDE__
 #define UNUSED [[maybe_unused]]
 #else
@@ -19,6 +23,22 @@ namespace Tests
 		Success = 0,
 		Failure = -1
 	};
+
+	template<typename T>
+	void PrintNode(LinkedList::Node<T>* node)
+	{
+		std::cout << "\nData: " << node->data << "\n";
+
+		if (node->prev != nullptr)
+		{
+			std::cout << "Prev: " << node->prev << "\n";
+		}
+
+		if (node->next != nullptr)
+		{
+			std::cout << "Next: " << node->next << "\n";
+		}
+	}
 }
 
 #endif
