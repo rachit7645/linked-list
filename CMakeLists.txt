@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Source files
 add_library(linkedList
     Node.cpp
+    List.cpp
 )
 
 # Define _DEBUG in debug mode
@@ -28,9 +29,6 @@ target_compile_options(linkedList PRIVATE -O3)
 # Enable debug output
 target_compile_options(linkedList PRIVATE -g)
 
-# Basic Test
-add_executable(BasicNode tests/BasicNode.cpp)
-target_link_libraries(BasicNode linkedList)
 # Forward Iterator Test
 add_executable(ForwardIter tests/ForwardIter.cpp)
 target_link_libraries(ForwardIter linkedList)
@@ -39,6 +37,5 @@ add_executable(RevIter tests/RevIter.cpp)
 target_link_libraries(RevIter linkedList)
 
 enable_testing()
-add_test(BasicNodeTest BasicNode)
 add_test(ForwardIterTest ForwardIter)
 add_test(RevIterTest RevIter)

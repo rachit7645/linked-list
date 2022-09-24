@@ -1,32 +1,23 @@
+#include "../List.h"
 #include "TestCommon.h"
 
-using LinkedList::Node;
+using LinkedList::List;
 using Tests::Result;
-
-// TODO: Fix this test
 
 int main(UNUSED int argc, UNUSED char** argv)
 {
-	auto* first  = new Node<f32>();
-	auto* second = new Node<f32>();
-	auto* third  = new Node<f32>();
-	auto* fourth = new Node<f32>();
+	List<f32> list;
 
-	*first  = {PI,       nullptr, second };
-	*second = {69.0f,    first,   third  };
-	*third  = {420.0f,   second,  fourth };
-	*fourth = {69420.0f, third,   nullptr};
+	list.emplace_back(PI);
+	list.emplace_back(69.0f);
+	list.emplace_back(420.0f);
+	list.emplace_back(69420.0f);
 
-	auto* current = first;
-	for (auto i = current->rbegin(); i != current->rend(); --current)
+	for (auto i = list.rbegin(); i != list.rend(); --i)
 	{
 		auto node = *i;
 		Tests::PrintNode(&node);
 	}
-
-	delete first;
-	delete second;
-	delete third;
 
 	return Result::Success;
 }

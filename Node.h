@@ -8,6 +8,13 @@ namespace LinkedList
 	template<typename T>
 	struct Node
 	{
+		Node(const T& data, Node* next, Node* prev)
+			: data(data),
+			  prev(prev),
+			  next(next)
+		{
+		}
+
 		T     data;
 		Node* prev;
 		Node* next;
@@ -24,6 +31,11 @@ namespace LinkedList
 			Iterator(Node* node)
 				: m_node(node)
 			{
+			}
+
+			pointer get()
+			{
+				return m_node;
 			}
 
 			reference operator*() const
@@ -58,7 +70,7 @@ namespace LinkedList
 			Iterator operator--(int)
 			{
 				Iterator tmp = *this;
-				++(*this);
+				--(*this);
 				return tmp;
 			}
 
@@ -75,34 +87,6 @@ namespace LinkedList
 		private:
 			Node* m_node;
 		};
-
-		Iterator begin()
-		{
-			return Iterator(this);
-		}
-
-		Iterator end()
-		{
-			// Assume that the end is the next item
-			auto end = Iterator(next);
-			// If not null, go to next
-			while (end != nullptr)
-			{
-				end = Iterator(end->next);
-			}
-			// Return the end
-			return end;
-		}
-
-		Iterator rbegin()
-		{
-			return end()--;
-		}
-
-		Iterator rend()
-		{
-			return begin()--;
-		}
 	};
 }
 
