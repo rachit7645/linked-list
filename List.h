@@ -9,8 +9,9 @@ namespace LinkedList
 	class List
 	{
 	public:
-		using Node     = Node<T>;
-		using Iterator = typename Node::Iterator;
+		using Node          = Node<T>;
+		using Iterator      = typename Node::Iterator;
+		using ConstIterator = typename Node::ConstIterator;
 
 		~List()
 		{
@@ -43,19 +44,29 @@ namespace LinkedList
 			return Iterator(m_front);
 		}
 
+		ConstIterator cbegin() const
+		{
+			return ConstIterator(m_front);
+		}
+
 		Iterator end()
 		{
 			return Iterator(m_back)++;
 		}
 
-		Iterator rbegin()
+		ConstIterator cend() const
 		{
-			return Iterator(m_back);
+			return ConstIterator(m_back)++;
 		}
 
-		Iterator rend()
+		Node front()
 		{
-			return Iterator(m_front)--;
+			return *m_front;
+		}
+
+		Node back()
+		{
+			return *m_back;
 		}
 
 	private:

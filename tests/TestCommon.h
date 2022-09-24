@@ -2,8 +2,11 @@
 #define TEST_COMMON_H
 
 #include <iostream>
+#include <random>
+#include <cstddef>
 
 #include "../Node.h"
+#include "../List.h"
 
 #ifdef __CLION_IDE__
 #define UNUSED [[maybe_unused]]
@@ -14,18 +17,31 @@
 using f32 = float;
 using f64 = double;
 
-constexpr f64 PI = 22.0 / 7.0;
+using usize = std::size_t;
 
 namespace Tests
 {
+	constexpr usize NUM_ITEMS = 100;
+
 	enum Result : int
 	{
 		Success = 0,
 		Failure = -1
 	};
 
+	// Truly random number between a range
 	template<typename T>
-	void PrintNode(LinkedList::Node<T>* node)
+	T RandRange(T min, T max)
+	{
+		std::random_device rd;
+		std::seed_seq ss{ rd(), rd(), rd(), rd() };
+		static thread_local std::mt19937_64 generator(ss);
+		std::uniform_real_distribution<T> distributer(min, max);
+		return distributer(generator);
+	}
+
+	template<typename T>
+	void PrintNode(const LinkedList::Node<T>* node)
 	{
 		std::cout << "\nData: " << node->data << "\n";
 
@@ -37,6 +53,15 @@ namespace Tests
 		if (node->next != nullptr)
 		{
 			std::cout << "Next: " << node->next << "\n";
+		}
+	}
+
+	template<typename T>
+	void FillList(LinkedList::List<T>& list, usize count)
+	{
+		for (usize i = 0; i < count; ++i)
+		{
+			list.emplace_back(Tests::RandRange(-100.0f, 100.0f));
 		}
 	}
 }

@@ -29,13 +29,13 @@ target_compile_options(linkedList PRIVATE -O3)
 # Enable debug output
 target_compile_options(linkedList PRIVATE -g)
 
-# Forward Iterator Test
-add_executable(ForwardIter tests/ForwardIter.cpp)
-target_link_libraries(ForwardIter linkedList)
-# Reverse Iterator Test
-add_executable(RevIter tests/RevIter.cpp)
-target_link_libraries(RevIter linkedList)
+# Iterator Test
+add_executable(Iterator tests/Iterator.cpp)
+target_link_libraries(Iterator linkedList)
+# Const Iterator Test
+add_executable(ConstIterator tests/ConstIterator.cpp)
+target_link_libraries(ConstIterator linkedList)
 
 enable_testing()
-add_test(ForwardIterTest ForwardIter)
-add_test(RevIterTest RevIter)
+add_test(IteratorTest Iterator)
+add_test(ConstIterTest ConstIterator)

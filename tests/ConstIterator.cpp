@@ -1,22 +1,21 @@
+#include <algorithm>
+
 #include "../List.h"
 #include "TestCommon.h"
 
+using LinkedList::Node;
 using LinkedList::List;
 using Tests::Result;
 
 int main(UNUSED int argc, UNUSED char** argv)
 {
 	List<f32> list;
+	Tests::FillList(list, Tests::NUM_ITEMS);
 
-	list.emplace_back(PI);
-	list.emplace_back(69.0f);
-	list.emplace_back(420.0f);
-	list.emplace_back(69420.0f);
-
-	for (auto& i : list)
+	std::for_each(list.cbegin(), list.cend(), [] (Node<f32> node)
 	{
-		Tests::PrintNode(&i);
-	}
+		Tests::PrintNode(&node);
+	});
 
 	return Result::Success;
 }
