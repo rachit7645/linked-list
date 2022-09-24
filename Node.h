@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <iterator>
+#include <iostream>
 
 namespace LinkedList
 {
@@ -156,6 +157,23 @@ namespace LinkedList
 		private:
 			Node* m_node;
 		};
+
+		friend std::ostream& operator<<(std::ostream& os, const Node& node)
+		{
+			os << "Data: " << node.data << "\n";
+
+			if (node.prev != nullptr)
+			{
+				os << "Prev: " << node.prev << "\n";
+			}
+
+			if (node.next != nullptr)
+			{
+				os << "Next: " << node.next << "\n";
+			}
+
+			return os;
+		}
 	};
 }
 

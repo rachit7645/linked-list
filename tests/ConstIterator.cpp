@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <iostream>
 
 #include "../List.h"
 #include "TestCommon.h"
@@ -14,7 +15,7 @@ int main(UNUSED int argc, UNUSED char** argv)
 
 	std::for_each(list.cbegin(), list.cend(), [] (Node<f32> node)
 	{
-		Tests::PrintNode(&node);
+		std::cout << node << "\n";
 	});
 
 	return Result::Success;

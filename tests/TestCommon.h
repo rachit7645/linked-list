@@ -1,7 +1,6 @@
 #ifndef TEST_COMMON_H
 #define TEST_COMMON_H
 
-#include <iostream>
 #include <random>
 #include <cstddef>
 
@@ -38,22 +37,6 @@ namespace Tests
 		static thread_local std::mt19937_64 generator(ss);
 		std::uniform_real_distribution<T> distributer(min, max);
 		return distributer(generator);
-	}
-
-	template<typename T>
-	void PrintNode(const LinkedList::Node<T>* node)
-	{
-		std::cout << "\nData: " << node->data << "\n";
-
-		if (node->prev != nullptr)
-		{
-			std::cout << "Prev: " << node->prev << "\n";
-		}
-
-		if (node->next != nullptr)
-		{
-			std::cout << "Next: " << node->next << "\n";
-		}
 	}
 
 	template<typename T>
