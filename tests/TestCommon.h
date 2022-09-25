@@ -20,8 +20,6 @@ using usize = std::size_t;
 
 namespace Tests
 {
-	constexpr usize NUM_ITEMS = 100;
-
 	enum Result : int
 	{
 		Success = 0,

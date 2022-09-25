@@ -11,7 +11,8 @@ using Tests::Result;
 int main(UNUSED int argc, UNUSED char** argv)
 {
 	List<f32> list;
-	Tests::FillList(list, Tests::NUM_ITEMS);
+	// Fill the list
+	Tests::FillList(list, 100);
 
 	std::for_each(list.begin(), list.end(), [] (Node<f32> node)
 	{

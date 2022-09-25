@@ -32,10 +32,18 @@ target_compile_options(linkedList PRIVATE -g)
 # Iterator Test
 add_executable(Iterator tests/Iterator.cpp)
 target_link_libraries(Iterator linkedList)
+# Reverse Iterator Test
+add_executable(RevIterator tests/RevIterator.cpp)
+target_link_libraries(RevIterator linkedList)
 # Const Iterator Test
 add_executable(ConstIterator tests/ConstIterator.cpp)
 target_link_libraries(ConstIterator linkedList)
+# Const Reverse Iterator Test
+add_executable(ConstRevIterator tests/ConstRevIterator.cpp)
+target_link_libraries(ConstRevIterator linkedList)
 
 enable_testing()
 add_test(IteratorTest Iterator)
+add_test(RevIterTest RevIterator)
 add_test(ConstIterTest ConstIterator)
+add_test(ConstRevIterTest ConstRevIterator)

@@ -3,6 +3,8 @@
 
 #include "Node.h"
 
+// TODO: Add insertion and deletion
+
 namespace LinkedList
 {
 	template<typename T>
@@ -15,9 +17,9 @@ namespace LinkedList
 
 		~List()
 		{
-			for (auto i = begin(); i != end(); ++i)
+			for (auto iter = begin(); iter != end(); ++iter)
 			{
-				delete i.get();
+				delete iter.get();
 			}
 		}
 
@@ -44,27 +46,47 @@ namespace LinkedList
 			return Iterator(m_front);
 		}
 
+		Iterator rbegin()
+		{
+			return Iterator(m_back);
+		}
+
 		ConstIterator cbegin() const
 		{
 			return ConstIterator(m_front);
 		}
 
+		ConstIterator crbegin() const
+		{
+			return ConstIterator(m_back);
+		}
+
 		Iterator end()
 		{
-			return Iterator(m_back)++;
+			return Iterator(m_back->next);
+		}
+
+		Iterator rend()
+		{
+			return Iterator(m_front->prev);
 		}
 
 		ConstIterator cend() const
 		{
-			return ConstIterator(m_back)++;
+			return ConstIterator(m_back->next);
 		}
 
-		Node front()
+		ConstIterator crend() const
+		{
+			return ConstIterator(m_front->prev);
+		}
+
+		Node& front()
 		{
 			return *m_front;
 		}
 
-		Node back()
+		Node& back()
 		{
 			return *m_back;
 		}

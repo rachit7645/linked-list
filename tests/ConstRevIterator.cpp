@@ -1,23 +1,21 @@
-#include <algorithm>
 #include <iostream>
 
 #include "../List.h"
 #include "TestCommon.h"
 
-using LinkedList::Node;
 using LinkedList::List;
 using Tests::Result;
 
 int main(UNUSED int argc, UNUSED char** argv)
 {
 	List<f32> list;
-	// Fill list
+	// Fill the list
 	Tests::FillList(list, 100);
 
-	std::for_each(list.cbegin(), list.cend(), [] (Node<f32> node)
+	for (auto iter = list.crbegin(); iter != list.crend(); --iter)
 	{
-		std::cout << node << "\n";
-	});
+		std::cout << *iter.get() << "\n";
+	}
 
 	return Result::Success;
 }
