@@ -23,9 +23,16 @@ namespace LinkedList
 			next = other.next;
 		}
 
-		T     data;
-		Node* prev;
-		Node* next;
+		Node(Node&& other)
+		{
+			data = std::move(other.data);
+			prev = std::move(other.prev);
+			next = std::move(other.next);
+		}
+
+		T     data = {};
+		Node* prev = nullptr;
+		Node* next = nullptr;
 
 		class Iterator
 		{
@@ -39,6 +46,11 @@ namespace LinkedList
 			Iterator(Node* node)
 				: m_node(node)
 			{
+			}
+
+			Iterator& operator=(const Iterator& other)
+			{
+				m_node = other.m_node;
 			}
 
 			pointer get()
@@ -82,11 +94,6 @@ namespace LinkedList
 				return tmp;
 			}
 
-			Iterator& operator=(const Iterator& other)
-			{
-				m_node = other.m_node;
-			}
-
 			friend bool operator==(const Iterator& a, const Iterator& b)
 			{
 				return a.m_node == b.m_node;
@@ -113,6 +120,11 @@ namespace LinkedList
 			ConstIterator(Node* node)
 			: m_node(node)
 			{
+			}
+
+			ConstIterator& operator=(const ConstIterator& other)
+			{
+				m_node = other.m_node;
 			}
 
 			pointer get()
@@ -154,11 +166,6 @@ namespace LinkedList
 				ConstIterator tmp = *this;
 				--(*this);
 				return tmp;
-			}
-
-			ConstIterator& operator=(const ConstIterator& other)
-			{
-				m_node = other.m_node;
 			}
 
 			friend bool operator==(const ConstIterator& a, const ConstIterator& b)

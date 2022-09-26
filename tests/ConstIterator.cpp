@@ -14,7 +14,7 @@ int main(UNUSED int argc, UNUSED char** argv)
 	// Fill list
 	Tests::FillRand(list, 100);
 
-	std::for_each(list.cbegin(), list.cend(), [] (Node<f32> node)
+	std::for_each(list.cbegin(), list.cend(), [] (const Node<f32>& node)
 	{
 		std::cout << node << "\n";
 	});
