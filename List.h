@@ -36,11 +36,6 @@ namespace LinkedList
 			m_back       = node;
 		}
 
-		void emplace_back(const T& data, Node* prev = nullptr, Node* next = nullptr)
-		{
-			push_back(new Node(data, prev, next));
-		}
-
 		Iterator begin()
 		{
 			return Iterator(m_front);

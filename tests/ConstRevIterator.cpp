@@ -10,7 +10,7 @@ int main(UNUSED int argc, UNUSED char** argv)
 {
 	List<f32> list;
 	// Fill the list
-	Tests::FillList(list, 100);
+	Tests::FillRand(list, 100);
 
 	for (auto iter = list.crbegin(); iter != list.crend(); --iter)
 	{

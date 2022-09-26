@@ -9,11 +9,18 @@ namespace LinkedList
 	template<typename T>
 	struct Node
 	{
-		Node(const T& data, Node* next, Node* prev)
+		Node(const T& data, Node* prev = nullptr, Node* next = nullptr)
 			: data(data),
 			  prev(prev),
 			  next(next)
 		{
+		}
+
+		Node(const Node& other)
+		{
+			data = other.data;
+			prev = other.prev;
+			next = other.next;
 		}
 
 		T     data;
@@ -73,6 +80,11 @@ namespace LinkedList
 				Iterator tmp = *this;
 				--(*this);
 				return tmp;
+			}
+
+			Iterator& operator=(const Iterator& other)
+			{
+				m_node = other.m_node;
 			}
 
 			friend bool operator==(const Iterator& a, const Iterator& b)
@@ -142,6 +154,11 @@ namespace LinkedList
 				ConstIterator tmp = *this;
 				--(*this);
 				return tmp;
+			}
+
+			ConstIterator& operator=(const ConstIterator& other)
+			{
+				m_node = other.m_node;
 			}
 
 			friend bool operator==(const ConstIterator& a, const ConstIterator& b)

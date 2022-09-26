@@ -12,7 +12,7 @@ int main(UNUSED int argc, UNUSED char** argv)
 {
 	List<f32> list;
 	// Fill the list
-	Tests::FillList(list, 100);
+	Tests::FillRand(list, 100);
 
 	std::for_each(list.begin(), list.end(), [] (Node<f32> node)
 	{

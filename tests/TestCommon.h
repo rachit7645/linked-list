@@ -38,11 +38,11 @@ namespace Tests
 	}
 
 	template<typename T>
-	void FillList(LinkedList::List<T>& list, usize count)
+	void FillRand(LinkedList::List<T>& list, usize count)
 	{
 		for (usize i = 0; i < count; ++i)
 		{
-			list.emplace_back(Tests::RandRange(-100.0f, 100.0f));
+			list.push_back(new LinkedList::Node<T>(Tests::RandRange(-100.0f, 100.0f)));
 		}
 	}
 }
