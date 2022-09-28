@@ -3,7 +3,7 @@
 
 #include "Node.h"
 
-// TODO: Add insertion and deletion
+// TODO: Add insertion
 
 namespace LinkedList
 {
@@ -11,9 +11,8 @@ namespace LinkedList
 	class List
 	{
 	public:
-		using Node          = Node<T>;
-		using Iterator      = typename Node::Iterator;
-		using ConstIterator = typename Node::ConstIterator;
+		using Iterator      = typename Node<T>::Iterator;
+		using ConstIterator = typename Node<T>::ConstIterator;
 
 		~List()
 		{
@@ -23,7 +22,7 @@ namespace LinkedList
 			}
 		}
 
-		void push_back(Node* node)
+		void push_back(Node<T>* node)
 		{
 			if (m_back == nullptr || m_front == nullptr)
 			{
@@ -34,6 +33,37 @@ namespace LinkedList
 			m_back->next = node;
 			node->prev   = m_back;
 			m_back       = node;
+		}
+
+		template<typename ...Args>
+		void emplace_back(Args&& ...args)
+		{
+			push_back(new Node<T>(args...));
+		}
+
+		void erase(Iterator iter)
+		{
+			// Front check
+			if (iter.get() == m_front)
+			{
+				m_front = iter->next;
+			}
+			else
+			{
+				iter->prev->next = iter->next;
+			}
+
+			// Back check
+			if (iter.get() == m_back)
+			{
+				m_back = iter->prev;
+			}
+			else
+			{
+				iter->next->prev = iter->prev;
+			}
+
+			delete iter.get();
 		}
 
 		Iterator begin()
@@ -76,19 +106,19 @@ namespace LinkedList
 			return ConstIterator(m_front->prev);
 		}
 
-		Node& front()
+		Node<T>& front()
 		{
 			return *m_front;
 		}
 
-		Node& back()
+		Node<T>& back()
 		{
 			return *m_back;
 		}
 
 	private:
-		Node* m_front = nullptr;
-		Node* m_back  = nullptr;
+		Node<T>* m_front = nullptr;
+		Node<T>* m_back  = nullptr;
 	};
 }
 

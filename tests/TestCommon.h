@@ -42,7 +42,7 @@ namespace Tests
 	{
 		for (usize i = 0; i < count; ++i)
 		{
-			list.push_back(new LinkedList::Node<T>(Tests::RandRange(-100.0f, 100.0f)));
+			list.emplace_back(Tests::RandRange(-100.0f, 100.0f));
 		}
 	}
 }
