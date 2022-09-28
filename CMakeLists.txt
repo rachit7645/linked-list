@@ -41,9 +41,13 @@ target_link_libraries(ConstIterator linkedList)
 # Const Reverse Iterator Test
 add_executable(ConstRevIterator tests/ConstRevIterator.cpp)
 target_link_libraries(ConstRevIterator linkedList)
+# List lib test
+add_executable(ListLib tests/ListLib.cpp)
+target_link_libraries(ListLib linkedList)
 
 enable_testing()
 add_test(IteratorTest Iterator)
 add_test(RevIterTest RevIterator)
 add_test(ConstIterTest ConstIterator)
 add_test(ConstRevIterTest ConstRevIterator)
+add_test(ListLibTest ConstRevIterator)

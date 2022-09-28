@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 
 #include "../List.h"
@@ -14,10 +13,10 @@ int main(UNUSED int argc, UNUSED char** argv)
 	// Fill list
 	Tests::FillRand(list, 100);
 
-	std::for_each(list.cbegin(), list.cend(), [] (const Node<f32>& node)
+	for (const auto& item : list)
 	{
-		std::cout << node << "\n";
-	});
+		std::cout << item << "\n";
+	}
 
 	return Result::Success;
 }

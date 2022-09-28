@@ -14,7 +14,7 @@ int main(UNUSED int argc, UNUSED char** argv)
 
 	for (auto iter = list.crbegin(); iter != list.crend(); --iter)
 	{
-		std::cout << *iter.get() << "\n";
+		std::cout << *iter << "\n";
 	}
 
 	return Result::Success;

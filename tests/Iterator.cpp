@@ -1,11 +1,9 @@
-#include <algorithm>
 #include <iostream>
 
 #include "../List.h"
 #include "TestCommon.h"
 
 using LinkedList::List;
-using LinkedList::Node;
 using Tests::Result;
 
 int main(UNUSED int argc, UNUSED char** argv)
@@ -14,10 +12,10 @@ int main(UNUSED int argc, UNUSED char** argv)
 	// Fill the list
 	Tests::FillRand(list, 100);
 
-	std::for_each(list.begin(), list.end(), [] (Node<f32>& node)
+	for (auto& item : list)
 	{
-		std::cout << node << "\n";
-	});
+		std::cout << item << "\n";
+	}
 
 	return Result::Success;
 }
