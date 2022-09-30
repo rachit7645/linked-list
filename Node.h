@@ -16,18 +16,43 @@ namespace LinkedList
 		{
 		}
 
+		Node(T&& data, Node* prev = nullptr, Node* next = nullptr)
+			: data(std::move(data)),
+		  	  prev(prev),
+		  	  next(next)
+		{
+		}
+
 		Node(const Node& other)
+			: data(other.data),
+			  prev(other.prev),
+			  next(other.next)
+		{
+		}
+
+		Node(Node&& other)
+			: data(std::move(other.data)),
+			  prev(std::move(other.prev)),
+			  next(std::move(other.next))
+		{
+		}
+
+		Node& operator=(const Node& other)
 		{
 			data = other.data;
 			prev = other.prev;
 			next = other.next;
+
+			return *this;
 		}
 
-		Node(Node&& other)
+		Node& operator=(Node&& other)
 		{
 			data = std::move(other.data);
 			prev = std::move(other.prev);
 			next = std::move(other.next);
+
+			return *this;
 		}
 
 		T     data = {};
@@ -48,9 +73,28 @@ namespace LinkedList
 			{
 			}
 
+			Iterator(const Iterator& other)
+				: m_node(other.m_node)
+			{
+			}
+
+			Iterator(Iterator&& other)
+				: m_node(std::move(other.m_node))
+			{
+			}
+
 			Iterator& operator=(const Iterator& other)
 			{
 				m_node = other.m_node;
+
+				return *this;
+			}
+
+			Iterator& operator=(Iterator&& other)
+			{
+				m_node = std::move(other.m_node);
+
+				return *this;
 			}
 
 			pointer get()
@@ -118,13 +162,32 @@ namespace LinkedList
 			using reference         = const Node&;
 
 			ConstIterator(Node* node)
-			: m_node(node)
+				: m_node(node)
+			{
+			}
+
+			ConstIterator(const ConstIterator& other)
+				: m_node(other.m_node)
+			{
+			}
+
+			ConstIterator(ConstIterator&& other)
+				: m_node(std::move(other.m_node))
 			{
 			}
 
 			ConstIterator& operator=(const ConstIterator& other)
 			{
 				m_node = other.m_node;
+
+				return *this;
+			}
+
+			ConstIterator& operator=(ConstIterator&& other)
+			{
+				m_node = std::move(other.m_node);
+
+				return *this;
 			}
 
 			pointer get()

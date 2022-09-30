@@ -14,12 +14,26 @@ namespace LinkedList
 		using Iterator      = typename Node<T>::Iterator;
 		using ConstIterator = typename Node<T>::ConstIterator;
 
+		List() = default;
+
+		List(List&& other)
+			: m_front(std::move(other.m_front)),
+			  m_back(std::move(other.m_back))
+		{
+		}
+
 		~List()
 		{
 			for (auto iter = begin(); iter != end(); ++iter)
 			{
 				delete iter.get();
 			}
+		}
+
+		List& operator=(List&& other)
+		{
+			m_front = std::move(other.m_front);
+			m_back  = std::move(other.m_back);
 		}
 
 		void push_back(Node<T>* node)
