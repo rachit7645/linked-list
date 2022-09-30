@@ -4,40 +4,40 @@
 #include <iterator>
 #include <iostream>
 
-namespace LinkedList
+namespace rstd
 {
 	template<typename T>
-	struct Node
+	struct node
 	{
-		Node(const T& data, Node* prev = nullptr, Node* next = nullptr)
+		node(const T& data, node* prev = nullptr, node* next = nullptr)
 			: data(data),
 			  prev(prev),
 			  next(next)
 		{
 		}
 
-		Node(T&& data, Node* prev = nullptr, Node* next = nullptr)
+		node(T&& data, node* prev = nullptr, node* next = nullptr)
 			: data(std::move(data)),
 		  	  prev(prev),
 		  	  next(next)
 		{
 		}
 
-		Node(const Node& other)
+		node(const node& other)
 			: data(other.data),
 			  prev(other.prev),
 			  next(other.next)
 		{
 		}
 
-		Node(Node&& other)
+		node(node&& other)
 			: data(std::move(other.data)),
 			  prev(std::move(other.prev)),
 			  next(std::move(other.next))
 		{
 		}
 
-		Node& operator=(const Node& other)
+		node& operator=(const node& other)
 		{
 			data = other.data;
 			prev = other.prev;
@@ -46,7 +46,7 @@ namespace LinkedList
 			return *this;
 		}
 
-		Node& operator=(Node&& other)
+		node& operator=(node&& other)
 		{
 			data = std::move(other.data);
 			prev = std::move(other.prev);
@@ -56,41 +56,41 @@ namespace LinkedList
 		}
 
 		T     data = {};
-		Node* prev = nullptr;
-		Node* next = nullptr;
+		node* prev = nullptr;
+		node* next = nullptr;
 
-		class Iterator
+		class iterator
 		{
 		public:
 			using iterator_category = std::bidirectional_iterator_tag;
 			using difference_type   = std::ptrdiff_t;
-			using value_type        = Node;
-			using pointer           = Node*;
-			using reference         = Node&;
+			using value_type        = node;
+			using pointer           = node*;
+			using reference         = node&;
 
-			Iterator(Node* node)
+			iterator(node* node)
 				: m_node(node)
 			{
 			}
 
-			Iterator(const Iterator& other)
+			iterator(const iterator& other)
 				: m_node(other.m_node)
 			{
 			}
 
-			Iterator(Iterator&& other)
+			iterator(iterator&& other)
 				: m_node(std::move(other.m_node))
 			{
 			}
 
-			Iterator& operator=(const Iterator& other)
+			iterator& operator=(const iterator& other)
 			{
 				m_node = other.m_node;
 
 				return *this;
 			}
 
-			Iterator& operator=(Iterator&& other)
+			iterator& operator=(iterator&& other)
 			{
 				m_node = std::move(other.m_node);
 
@@ -112,78 +112,78 @@ namespace LinkedList
 				return m_node;
 			}
 
-			Iterator& operator++()
+			iterator& operator++()
 			{
 				m_node = m_node->next;
 				return *this;
 			}
 
-			Iterator operator++(int)
+			iterator operator++(int)
 			{
-				Iterator tmp = *this;
+				iterator tmp = *this;
 				++(*this);
 				return tmp;
 			}
 
-			Iterator& operator--()
+			iterator& operator--()
 			{
 				m_node = m_node->prev;
 				return *this;
 			}
 
-			Iterator operator--(int)
+			iterator operator--(int)
 			{
-				Iterator tmp = *this;
+				iterator tmp = *this;
 				--(*this);
 				return tmp;
 			}
 
-			friend bool operator==(const Iterator& a, const Iterator& b)
+			friend bool operator==(const iterator& a, const iterator& b)
 			{
 				return a.m_node == b.m_node;
 			}
 
-			friend bool operator!=(const Iterator& a, const Iterator& b)
+			friend bool operator!=(const iterator& a, const iterator& b)
 			{
 				return a.m_node != b.m_node;
 			}
 
 		private:
-			Node* m_node;
+			node* m_node;
 		};
 
-		class ConstIterator
+		class const_iterator
 		{
 		public:
 			using iterator_category = std::bidirectional_iterator_tag;
 			using difference_type   = std::ptrdiff_t;
-			using value_type        = const Node;
-			using pointer           = const Node*;
-			using reference         = const Node&;
+			using value_type        = const node;
+			using pointer           = const node*;
+			using reference         = const node&;
 
-			ConstIterator(Node* node)
+			const_iterator(node* node)
 				: m_node(node)
 			{
 			}
 
-			ConstIterator(const ConstIterator& other)
+			const_iterator(const const_iterator& other)
 				: m_node(other.m_node)
 			{
 			}
 
-			ConstIterator(ConstIterator&& other)
+			const_iterator(const_iterator&& other)
 				: m_node(std::move(other.m_node))
 			{
 			}
 
-			ConstIterator& operator=(const ConstIterator& other)
+			const_iterator& operator=(const const_iterator& other)
 			{
 				m_node = other.m_node;
 
 				return *this;
 			}
 
-			ConstIterator& operator=(ConstIterator&& other)
+			const_iterator& operator=(const_iterator&& other)
 			{
 				m_node = std::move(other.m_node);
 
@@ -205,47 +205,47 @@ namespace LinkedList
 				return m_node;
 			}
 
-			ConstIterator& operator++()
+			const_iterator& operator++()
 			{
 				m_node = m_node->next;
 				return *this;
 			}
 
-			ConstIterator operator++(int)
+			const_iterator operator++(int)
 			{
-				ConstIterator tmp = *this;
+				const_iterator tmp = *this;
 				++(*this);
 				return tmp;
 			}
 
-			ConstIterator& operator--()
+			const_iterator& operator--()
 			{
 				m_node = m_node->prev;
 				return *this;
 			}
 
-			ConstIterator operator--(int)
+			const_iterator operator--(int)
 			{
-				ConstIterator tmp = *this;
+				const_iterator tmp = *this;
 				--(*this);
 				return tmp;
 			}
 
-			friend bool operator==(const ConstIterator& a, const ConstIterator& b)
+			friend bool operator==(const const_iterator& a, const const_iterator& b)
 			{
 				return a.m_node == b.m_node;
 			}
 
-			friend bool operator!=(const ConstIterator& a, const ConstIterator& b)
+			friend bool operator!=(const const_iterator& a, const const_iterator& b)
 			{
 				return a.m_node != b.m_node;
 			}
 
 		private:
-			Node* m_node;
+			node* m_node;
 		};
 
-		friend std::ostream& operator<<(std::ostream& os, const Node& node)
+		friend std::ostream& operator<<(std::ostream& os, const node& node)
 		{
 			os << "Data: " << node.data << "\n";
 

@@ -38,7 +38,7 @@ namespace Tests
 	}
 
 	template<typename T>
-	void FillRand(LinkedList::List<T>& list, usize count)
+	void FillRand(rstd::list<T>& list, usize count)
 	{
 		for (usize i = 0; i < count; ++i)
 		{

@@ -5,24 +5,24 @@
 
 // TODO: Add insertion
 
-namespace LinkedList
+namespace rstd
 {
 	template<typename T>
-	class List
+	class list
 	{
 	public:
-		using Iterator      = typename Node<T>::Iterator;
-		using ConstIterator = typename Node<T>::ConstIterator;
+		using iterator      = typename node<T>::iterator;
+		using const_iterator = typename node<T>::const_iterator;
 
-		List() = default;
+		list() = default;
 
-		List(List&& other)
+		list(list&& other)
 			: m_front(std::move(other.m_front)),
 			  m_back(std::move(other.m_back))
 		{
 		}
 
-		~List()
+		~list()
 		{
 			for (auto iter = begin(); iter != end(); ++iter)
 			{
@@ -30,13 +30,13 @@ namespace LinkedList
 			}
 		}
 
-		List& operator=(List&& other)
+		list& operator=(list&& other)
 		{
 			m_front = std::move(other.m_front);
 			m_back  = std::move(other.m_back);
 		}
 
-		void push_back(Node<T>* node)
+		void push_back(node<T>* node)
 		{
 			if (m_back == nullptr || m_front == nullptr)
 			{
@@ -52,10 +52,10 @@ namespace LinkedList
 		template<typename ...Args>
 		void emplace_back(Args&& ...args)
 		{
-			push_back(new Node<T>(args...));
+			push_back(new node<T>(args...));
 		}
 
-		void erase(Iterator iter)
+		void erase(iterator iter)
 		{
 			// Front check
 			if (iter.get() == m_front)
@@ -80,59 +80,59 @@ namespace LinkedList
 			delete iter.get();
 		}
 
-		Iterator begin()
+		iterator begin()
 		{
-			return Iterator(m_front);
+			return iterator(m_front);
 		}
 
-		Iterator rbegin()
+		iterator rbegin()
 		{
-			return Iterator(m_back);
+			return iterator(m_back);
 		}
 
-		ConstIterator cbegin() const
+		const_iterator cbegin() const
 		{
-			return ConstIterator(m_front);
+			return const_iterator(m_front);
 		}
 
-		ConstIterator crbegin() const
+		const_iterator crbegin() const
 		{
-			return ConstIterator(m_back);
+			return const_iterator(m_back);
 		}
 
-		Iterator end()
+		iterator end()
 		{
-			return Iterator(m_back->next);
+			return iterator(m_back->next);
 		}
 
-		Iterator rend()
+		iterator rend()
 		{
-			return Iterator(m_front->prev);
+			return iterator(m_front->prev);
 		}
 
-		ConstIterator cend() const
+		const_iterator cend() const
 		{
-			return ConstIterator(m_back->next);
+			return const_iterator(m_back->next);
 		}
 
-		ConstIterator crend() const
+		const_iterator crend() const
 		{
-			return ConstIterator(m_front->prev);
+			return const_iterator(m_front->prev);
 		}
 
-		Node<T>& front()
+		node<T>& front()
 		{
 			return *m_front;
 		}
 
-		Node<T>& back()
+		node<T>& back()
 		{
 			return *m_back;
 		}
 
 	private:
-		Node<T>* m_front = nullptr;
-		Node<T>* m_back  = nullptr;
+		node<T>* m_front = nullptr;
+		node<T>* m_back  = nullptr;
 	};
 }
 

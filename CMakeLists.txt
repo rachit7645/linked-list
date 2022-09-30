@@ -29,19 +29,19 @@ target_compile_options(linkedList PRIVATE -O3)
 # Enable debug output
 target_compile_options(linkedList PRIVATE -g)
 
-# Iterator Test
+# iterator Test
 add_executable(Iterator tests/Iterator.cpp)
 target_link_libraries(Iterator linkedList)
-# Reverse Iterator Test
+# Reverse iterator Test
 add_executable(RevIterator tests/RevIterator.cpp)
 target_link_libraries(RevIterator linkedList)
-# Const Iterator Test
+# Const iterator Test
 add_executable(ConstIterator tests/ConstIterator.cpp)
 target_link_libraries(ConstIterator linkedList)
-# Const Reverse Iterator Test
+# Const Reverse iterator Test
 add_executable(ConstRevIterator tests/ConstRevIterator.cpp)
 target_link_libraries(ConstRevIterator linkedList)
-# List lib test
+# list lib test
 add_executable(ListLib tests/ListLib.cpp)
 target_link_libraries(ListLib linkedList)
 
